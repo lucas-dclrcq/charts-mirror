@@ -7,7 +7,7 @@
     {
       customType: "regex",
       description: ["Process Chart versions"],
-      fileMatch: ["(^|/)metadata\\.ya?ml$"],
+      managerFilePatterns: ["/(^|/)metadata\\.ya?ml$/"],
       matchStrings: [
         "registry: (?<registryUrl>\\S+)\nname: (?<depName>\\S+)\nversion: (?<currentValue>\\S+)",
       ],
