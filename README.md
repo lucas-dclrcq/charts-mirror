@@ -57,14 +57,15 @@ spec:
 ## Contributing
 
 1. Verify the chart doesn't already have an official OCI Helm Chart.
-2. Create a new directory under `charts/` with the chart name.
+2. Create a new directory under `apps/` with the chart name.
 3. Add a `metadata.yaml` to that new directory with the contents below and update the variables to reflect the chart you are adding:
 
     ```yaml
     ---
-    registry: ${CHART_REGISTRY_URL}
-    name: ${CHART_NAME}
-    version: ${CHART_VERSION}
+    chartRegistry: # Registry of the Upstream Chart
+    chartName:     # Name of the Upstream Chart
+    chartVersion:  # Version of the Upstream Chart
+    artifactName:  # Name of the Published Chart
     ```
 
 4. Open a PR with the link in the description to the upstream issue tracking OCI Helm Chart support.
