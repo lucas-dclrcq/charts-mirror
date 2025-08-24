@@ -56,19 +56,40 @@ spec:
 
 ## Contributing
 
-1. Verify the chart doesn't already have an official OCI Helm Chart.
-2. Create a new directory under `apps/` with the chart name.
-3. Add a `metadata.yaml` to that new directory with the contents below and update the variables to reflect the chart you are adding:
+## Contributing
 
-    ```yaml
-    ---
-    chartRegistry: # Registry of the Upstream Chart
-    chartName:     # Name of the Upstream Chart
-    chartVersion:  # Version of the Upstream Chart
-    artifactName:  # Name of the Published Chart
-    ```
+To add a new chart to this repository:
 
-4. Open a PR with the link in the description to the upstream issue tracking OCI Helm Chart support.
+1. **Check for an existing OCI Helm Chart**
+
+   Confirm that the application you want to add does **not** already provide an official OCI Helm Chart.
+
+2. **Create a chart directory**
+
+   Make a new directory under `apps/` named after the chart.
+
+3. **Add chart metadata**
+
+   Inside the new directory, create a `metadata.yaml` file with the following structure.
+   Update the fields to match the upstream chart details:
+
+   ```yaml
+   ---
+   chartRegistry: <Registry of the upstream chart>
+   chartName: <Name of the upstream chart>
+   chartVersion: <Version of the upstream chart>
+   artifactName: <Name of the published chart>
+   ```
+
+4. **Request upstream OCI support**
+
+   If the upstream project does not yet publish OCI Helm Charts, open an issue in their application or chart repository requesting OCI Helm Chart support.
+
+5. **Submit a pull request**
+
+   Open a PR in this repository:
+   - Include the link to the upstream issue (from step 4) in the PR description.
+   - Ensure your PR only adds the new chart directory and metadata.
 
 ## Maintaining a Fork
 
