@@ -19,8 +19,8 @@ on:
         default: true
 
 jobs:
-  deprecate:
-    name: Deprecate (${{ inputs.name }})
+  plan:
+    name: Plan (${{ inputs.name }})
     runs-on: ubuntu-latest
     outputs:
       pull-number: ${{ steps.pr.outputs.pull-request-number }}
@@ -52,10 +52,10 @@ jobs:
           title: "feat: deprecate ${{ inputs.name }}"
           token: ${{ steps.app-token.outputs.token }}
 
-  release:
+  merge:
     if: ${{ inputs.release }}
-    name: Release (${{ inputs.name }})
-    needs: ["deprecate"]
+    name: Merge (${{ inputs.name }})
+    needs: ["plan"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -76,9 +76,27 @@ jobs:
             await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: ${{ needs.deprecate.outputs.pull-number }},
+              pull_number: ${{ needs.plan.outputs.pull-number }},
               merge_method: 'squash',
             });
+
+  announce:
+    if: ${{ inputs.release }}
+    name: Announce (${{ inputs.name }})
+    needs: ["merge"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Generate Token
+        uses: actions/create-github-app-token@a8d616148505b5069dccd32f177bb87d7f39123b # v2.1.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
 
       - name: Get Release Tag
         uses: ./.github/actions/release-tag
