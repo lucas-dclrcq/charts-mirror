@@ -56,8 +56,6 @@ spec:
 
 ## Contributing
 
-## Contributing
-
 To add a new chart to this repository:
 
 1. **Check for an existing OCI Helm Chart**
