@@ -1,0 +1,5 @@
+---
+chartRegistry: https://helm.releases.hashicorp.com
+chartName: vault
+chartVersion: 0.31.0
+artifactName: vault
