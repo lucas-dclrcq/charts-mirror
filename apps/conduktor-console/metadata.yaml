@@ -1,0 +1,5 @@
+---
+chartRegistry: https://helm.conduktor.io
+chartName: console
+chartVersion: 1.22.1
+artifactName: console
