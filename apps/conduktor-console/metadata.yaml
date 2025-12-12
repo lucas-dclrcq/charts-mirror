@@ -1,5 +1,5 @@
 ---
 chartRegistry: https://helm.conduktor.io
 chartName: console
-chartVersion: 1.25.0
+chartVersion: 1.26.0
 artifactName: console
